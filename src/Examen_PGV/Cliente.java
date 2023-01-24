@@ -1,4 +1,4 @@
-package AsyncChat;
+package Examen_PGV;
 
 
 
@@ -6,27 +6,24 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class AsyncClient {
+public class Cliente {
 
     public static void main(String args[]) throws IOException, InterruptedException {
         int puertoser = 26555;
         String direccion = "localhost";
-        // create DatagramSocket and get ip
         Socket cs = new Socket();
-       InetSocketAddress addr =new InetSocketAddress("localhost", 26555);
+        InetSocketAddress addr =new InetSocketAddress(direccion, puertoser);
 
-        System.out.println("Running Client");
+        System.out.println("Comenzando Cliente");
         cs.connect(addr);
-        System.out.println("Client is Up....");
+        System.out.println("Cliente Encendidp....");
 
-        // create a sender thread with a nested
-        // runnable class definition
+
         Thread csend;
         csend = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-
 
                     OutputStream os;
                     String mensuser = "";
@@ -35,9 +32,7 @@ public class AsyncClient {
                         synchronized (this) {
                             mensuser = sc.nextLine();
                             if (mensuser.contains("###")) {
-                                System.out.println("client "
-                                        + "exiting... ");
-                                //System.exit(0);
+                                System.out.println("Cerrando cliente... ");
                                 break;
                             }
                             os = cs.getOutputStream();

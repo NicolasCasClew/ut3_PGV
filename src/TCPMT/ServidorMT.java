@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class ServidorMT extends Thread {
 	Socket s = null;
 	Scanner sc = new Scanner(System.in);
+	public static int server_port = 26555;
 	public ServidorMT(Socket socket) {
 		this.s = socket;
 	}
@@ -18,7 +19,7 @@ public class ServidorMT extends Thread {
 			InterruptedException {
 
 		System.out.println("Creando socket del servidor");
-		ServerSocket serverSocket = new ServerSocket(5678);
+		ServerSocket serverSocket = new ServerSocket(server_port);
 		while (true) {
 			try {
 				System.out.println("Acepta conexiones");
